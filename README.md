@@ -176,15 +176,18 @@ How it works:
    ```
 
 ---
-
+Base Accuracy: 85.3 percent
+After threshold optimization: 90.2 percent
 ## Results Summary
 
-| Metric    | XGBoost Final |
-| --------- | ------------- |
-| Accuracy  | 90.2 percent  |
-| Precision | 0.90          |
-| Recall    | 0.64          |
-| F1-Score  | 0.77          |
+| Metric         | XGBoost Final |
+| -------------- | ------------- |
+| Accuracy       | 85.36 percent |
+| Precision      | 0.90          |
+|After threshold | 90.2 percent  |
+|optimization                    |
+| Recall         | 0.64          |
+| F1-Score       | 0.77          |
 
 Confusion Matrix Summary:
 
