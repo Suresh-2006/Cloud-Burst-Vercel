@@ -156,6 +156,18 @@ The web application enables users to input real-world weather parameters and ins
    http://127.0.0.1:5000/
    ```
 
+## 🚀 Cloudburst Prediction System – Render Deployment
+
+This project is a Flask-based Machine Learning application for predicting cloudburst risk (Low / Medium / High) using meteorological data.
+
+**🌐 Live Application**
+
+The application is deployed on Render and can be accessed at:
+
+[Live Application](https://cloud-burst-prediction-system-1.onrender.com/)
+
+
+
 ---
 
 
