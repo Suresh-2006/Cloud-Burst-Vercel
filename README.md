@@ -158,47 +158,17 @@ The web application enables users to input real-world weather parameters and ins
 
 ---
 
-## 🧭 Deployment on LinuxONE or IBM Cloud
 
-1. Upload the entire project folder to your **LinuxONE virtual server**.
-
-2. Ensure all dependencies are installed:
-
-   ```bash
-   pip install flask xgboost scikit-learn pandas seaborn joblib
-   ```
-
-3. Run Flask app in background:
-
-   ```bash
-   nohup python3 app.py &
-   ```
-
-4. Open the app in your browser via:
-
-   ```
-   http://<server-ip>:5000
-   ```
-
----
 
 ## 🧪 Results Summary
 
-| Metric    | XGBoost Final |
-<<<<<<< HEAD
-| --------- | ------------- |
-| Accuracy  |  percent  |
-| Precision | 0.90          |
-| Recall    | 0.64          |
-| F1-Score  | 0.77          |
-=======
+| Metric           | XGBoost Final |
 | -----------------| ------------- |
 | Accuracy         | **85.32%**    |
 | Threshold Optim  | **90.02%**    |
 | Precision        | 0.90          |
 | Recall           | 0.64          |
 | F1-Score         | 0.77          |
->>>>>>> fbcb9d630d99c4183eea099797dafff7602c41d9
 
 **Confusion Matrix Summary:**
 
