@@ -15,7 +15,7 @@ The system includes:
   * “🌦️ Possible Heavy Rain”
   * “☀️ No Cloudburst Expected”
 
-This project was developed for the **IBM Z Datathon 2025** by **Team Datanauts (SAV241)** from **Saveetha Engineering College**.
+This project was developed by **Team 247** from **Saveetha Engineering College**.
 
 ---
 
@@ -187,17 +187,14 @@ The web application enables users to input real-world weather parameters and ins
 
 ## 🧑‍💻 Contributors
 
-**Team Datanauts (SAV241)**
+**Team 247**
 Saveetha Engineering College
-IBM Z Datathon 2025
 
-| Name         | Role                                      |
-| ------------ | ------------------------------------------|
+
+| Name           | Role                                      |
+| ------------   | ------------------------------------------|
 | Suresh S       | Model Development, Backend Integration  |
-| Ganesh D       | Frontend Design                         |
-| Easwar R       | Data Preprocessing                      |
 | Sarweshvaran A | Deployment & Testing                    |
-| Dhinesh R      | UI Enhancements & Model Tuning          |
 | Tamizhselvan B | Documentation,Report & Github Management|
 
 ---
@@ -206,7 +203,6 @@ IBM Z Datathon 2025
 
 * Developed a complete **end-to-end ML-based cloudburst prediction system**
 * Achieved **over 90% accuracy** after fine-tuning
-* Successfully deployed on **LinuxONE virtual environment**
 * Integrated interactive web-based prediction system
 
 ---
