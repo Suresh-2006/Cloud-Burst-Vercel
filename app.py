@@ -2,45 +2,71 @@ from flask import Flask, render_template, request, jsonify
 import numpy as np
 import joblib
 
-# Initialize Flask app
 app = Flask(__name__)
 
-# Load model and scaler
-model = joblib.load("cloudburst_model.pkl")
-scaler = joblib.load("scaler.pkl")
+# ============================================================
+# 🌩️ LOAD MODEL, SCALER, AND THRESHOLD
+# ============================================================
+model = joblib.load("cloudburst_model.pkl")   # stacking or xgboost model
+scaler = joblib.load("scaler_stacking.pkl")
 
-# Home route
+try:
+    with open("best_threshold_stacking.txt", "r") as f:
+        best_threshold = float(f.read().strip())
+except:
+    best_threshold = 0.5
+
+# ============================================================
+# 🏠 HOME ROUTE
+# ============================================================
 @app.route('/')
 def home():
     return render_template('cloud_burst.html')
 
-# Prediction route
+# ============================================================
+# 🔮 PREDICTION API ROUTE (for fetch)
+# ============================================================
 @app.route('/predict', methods=['POST'])
 def predict():
     try:
-        # Read values from form
-        temperature = float(request.form['temperature'])
+        # Fetch input fields (names must match your HTML)
         rainfall = float(request.form['rainfall'])
+        avg_temp = float(request.form['temperature'])
         evaporation = float(request.form['evaporation'])
-        humidity = float(request.form['humidity'])
-        wind = float(request.form['wind'])
-        pressure = float(request.form['pressure'])
+        avg_humidity = float(request.form['humidity'])
+        wind_gust_speed = float(request.form['wind'])
+        avg_pressure = float(request.form['pressure'])
 
-        # Create feature vector in same order as training
-        features = np.array([[temperature, rainfall, evaporation, humidity, wind, pressure]])
+        # Derived features (auto backend)
+        temp_range = 0
+        wind_gust_speed_sq = wind_gust_speed ** 2
+        pressure_drop_index = 0
+        saturation_deficit = avg_temp * (100 - avg_humidity)
+        rainfall_wind_interaction = rainfall * wind_gust_speed
 
-        # Scale features
-        scaled = scaler.transform(features)
+        # Create feature vector
+        features = np.array([[
+            avg_temp, rainfall, evaporation, avg_humidity,
+            wind_gust_speed, avg_pressure, temp_range,
+            wind_gust_speed_sq, pressure_drop_index,
+            saturation_deficit, rainfall_wind_interaction
+        ]])
 
-        # Predict
-        prediction = model.predict(scaled)[0]
+        # Scale and predict
+        scaled_features = scaler.transform(features)
+        prob = model.predict_proba(scaled_features)[0, 1]
+        prediction = "Yes" if prob > best_threshold else "No"
 
-        # Return JSON result
-        result = "Yes" if prediction == 1 else "No"
-        return jsonify({'prediction': result})
+        return jsonify({
+            "prediction": prediction,
+            "probability": round(float(prob), 3)
+        })
 
     except Exception as e:
-        return jsonify({'error': str(e)})
+        return jsonify({"error": str(e)})
 
+# ============================================================
+# 🚀 RUN FLASK APP
+# ============================================================
 if __name__ == '__main__':
     app.run(debug=True)
