@@ -233,5 +233,3 @@ This project is released under the **MIT License**.
 You are free to use, modify, and distribute it for educational or research purposes.
 
 ---
-
-Would you like me to include a **short 1-page summary version** (for Datathon report or PDF submission) based on this README — just the essentials: objective, dataset, model, accuracy, and results?
